@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
-import ImageCard from '@/components/ImageCard.vue';
+// import PhotoCard from '@/components/PhotoCard.vue';
 import { getPosts } from '@/infrastructure/api';
 
 const photos = ref<any[]>([]);
@@ -21,7 +21,7 @@ const fetchPosts = async () => {
 
 // Fetch photos on component mount
 onMounted(() => {
-  // fetchPosts();
+  fetchPosts();
 });
 </script>
 
@@ -46,10 +46,7 @@ onMounted(() => {
           <div class="image-card">
             <img :src="photo.urls.regular" :alt="photo.alt_description" class="image-card__image" />
 
-            <div class="image-card__content">
-              <h2 class="image-card__title">{{ photo.description || 'No description available' }}</h2>
-              <p class="image-card__description">{{ photo.alt_description }}</p>
-            </div>
+
 
             <div class="image-card__author">
               <img :src="photo.user.profile_image.small" alt="Author profile image" class="author__image" />
@@ -58,14 +55,10 @@ onMounted(() => {
                 <p class="author__location">{{ photo.user.location }}</p>
               </div>
             </div>
-
-            <div class="image-card__footer">
-              <span class="likes">Likes: {{ photo.likes }}</span>
-              <a :href="photo.links.html" target="_blank" class="view-link">View on Unsplash</a>
-            </div>
           </div>
         </div>
       </div>
+
       <!-- <div class="grid-container">
         <div v-for="photo in photos" :key="photo.id">
           <div class="image-card">
@@ -97,18 +90,17 @@ onMounted(() => {
 
 <style scoped>
 .image-grid {
-  column-count: 3;
+  column-count: 2;
   column-gap: 16px;
 }
 
 .image-card {
-  display: inline-block;
+  position: relative; display: inline-block;
   /* Ensures the cards remain inline and are wrapped in columns */
   background: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 16px;
-  /* Add space between image cards vertically */
   width: 100%;
   overflow: hidden;
 }
@@ -123,10 +115,16 @@ onMounted(() => {
 }
 
 .image-card__author {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
   display: flex;
   align-items: center;
-  padding: 8px 16px;
-  background: #f9f9f9;
+  height: 100%;
 }
 
 .author__image {
@@ -185,23 +183,23 @@ onMounted(() => {
 
 /* Two different sizes for staggered effect */
 .height-1 {
-  height: 120px;
-}
-
-.height-2 {
-  height: 150px;
-}
-
-.height-3 {
-  height: 180px;
-}
-
-.height-4 {
   height: 220px;
 }
 
+.height-2 {
+  height: 260px;
+}
+
+.height-3 {
+  height: 300px;
+}
+
+.height-4 {
+  height: 320px;
+}
+
 .height-5 {
-  height: 250px;
+  height: 360px;
 }
 
 /* Content section inside the card */
@@ -243,190 +241,38 @@ onMounted(() => {
   }
 }
 
-
-/* 
- 
-.loading-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr));
-  gap: 16px;
-  padding: 16px;
-}
- 
-.loading-card {
-  background-color: #f2f2f2;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
- 
-.loading-image {
-  height: calc(100px + (100 * (random() / 10))); 
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 12px;
-  animation: shimmer 1.5s infinite;
-}
- 
-.loading-content {
-  margin-bottom: 16px;
-}
-
-.loading-title {
-  height: 20px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  width: 70%;
-  animation: shimmer 1.5s infinite;
-}
-
-.loading-description {
-  height: 14px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  width: 90%;
-  animation: shimmer 1.5s infinite;
-}
- 
-.loading-author {
-  display: flex;
-  align-items: center;
-}
-
-.loading-author-image {
-  width: 40px;
-  height: 40px;
-  background-color: #e0e0e0;
-  border-radius: 50%;
-  margin-right: 12px;
-  animation: shimmer 1.5s infinite;
-}
-
-.loading-author-details {
-  flex: 1;
-}
-
-.loading-author-name,
-.loading-author-location {
-  height: 14px;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  margin-bottom: 6px;
-  animation: shimmer 1.5s infinite;
-}
- 
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-
-  100% {
-    background-position: 200% 0;
+@media (max-width: 480px) {
+  .image-grid {
+    column-count: 1;
+    column-gap: 8px;
   }
 }
 
-.loading-image,
-.loading-title,
-.loading-description,
-.loading-author-image,
-.loading-author-name,
-.loading-author-location {
-  background-image: linear-gradient(90deg,
-      rgba(200, 200, 200, 0.1) 25%,
-      rgba(255, 255, 255, 0.2) 50%,
-      rgba(200, 200, 200, 0.1) 75%);
-  background-size: 200% 100%;
+@media (min-width: 481px) and (max-width: 768px) {
+  .image-grid {
+    column-count: 2;
+    column-gap: 12px;
+  }
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: auto;
-  gap: 16px;
-  column-count: 3; 
-    column-gap: 16px; 
+@media (min-width: 769px) and (max-width: 1024px) {
+  .image-grid {
+    column-count: 2;
+    column-gap: 16px;
+  }
 }
 
-.image-card {
-  max-width: 100%;
-  color: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-background: red;
-  display: inline-block;
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .image-grid {
+    column-count: 3;
+    column-gap: 20px;
+  }
 }
 
-.image-card__image {
-  width: 100%;
-  height: auto;
-  display: block;
+@media (min-width: 1441px) {
+  .image-grid {
+    column-count: 3;
+    column-gap: 24px;
+  }
 }
-
-.image-card__content {
-  padding: 16px;
-}
-
-.image-card__title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-.image-card__description {
-  font-size: 14px;
-  color: #555;
-}
-
-.image-card__author {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-}
-
-.author__image {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 12px;
-}
-
-.author__details {
-  font-size: 14px;
-}
-
-.author__name {
-  font-weight: bold;
-}
-
-.author__location {
-  color: #777;
-}
-
-.image-card__footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  border-top: 1px solid #eee;
-}
-
-.likes {
-  color: #777;
-}
-
-.view-link {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.view-link:hover {
-  text-decoration: underline;
-}
-  */
 </style>

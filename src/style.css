@@ -1,0 +1,219 @@
+ element.style {
+    --column-gutter: 24px;
+    --columns: 3;
+}
+.LYMM9 {
+    display: grid;
+    grid-column-gap: var(--column-gutter);
+    align-items: start;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+}
+
+* {
+    box-sizing: border-box;
+} 
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.cm8F8 {
+    color: var(--text-color);
+    fill: var(--text-color);
+    background-color: var(--background-color);
+    -webkit-font-smoothing: var(--font-smoothing);
+}
+.UyVIg {
+    --font-smoothing: auto;
+    --background-color: #fff;
+    --button-primary-background-color: #111;
+    --button-primary-background-color-hover: #222;
+    --button-primary-gradient-background-color: hsla(0, 0%, 100%, .1);
+    --button-primary-text-color: #fff;
+    --faded-text-color: #d1d1d1;
+    --form-input-radio-button-border-color: #d1d1d1;
+    --form-input-radio-button-checked-border-color: #007fff;
+    --form-input-radio-button-checked-dot-color: #007fff;
+    --link-text-color-hover: #111;
+    --link-text-color: #767676;
+    --placeholder-background-color: rgba(0, 0, 0, .05);
+    --small-faded-text-color: #767676;
+    --text-color: #111;
+    --demos-alt-background: #eee;
+    --demos-sidebar-active-entry-link: green;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+@media (min-width: 768px) {
+    :root {
+        --grid-container-inline-padding: 20px;
+    }
+}
+:root {
+    --space-1: 4px;
+    --space-2: 12px;
+    --space-3: 36px;
+    --space-4: 72px;
+}
+:root {
+    --space-1: .5rem;
+    --space-2: 1rem;
+    --space-3: 2rem;
+    --space-4: 4rem;
+}
+:root {
+    --width-1: 24rem;
+    --width-2: 32rem;
+    --width-3: 48rem;
+    --width-4: 64rem;
+    
+    --font-smoothing: auto;
+    --background-color: #fff;
+    --button-primary-background-color: #111;
+    --button-primary-background-color-hover: #222;
+    --button-primary-gradient-background-color: hsla(0, 0%, 100%, .1);
+    --button-primary-text-color: #fff;
+    --faded-text-color: #d1d1d1;
+    --form-input-radio-button-border-color: #d1d1d1;
+    --form-input-radio-button-checked-border-color: #007fff;
+    --form-input-radio-button-checked-dot-color: #007fff;
+    --link-text-color-hover: #111;
+    --link-text-color: #767676;
+    --placeholder-background-color: rgba(0, 0, 0, .05);
+    --small-faded-text-color: #767676;
+    --text-color: #111;
+    --demos-alt-background: #eee;
+    --demos-sidebar-active-entry-link: green;
+}
+.LYMM9 {
+  display: grid;
+  /* grid-column-gap: var(--column-gutter); */
+  align-items: start;
+  /* grid-template-columns: repeat(var(--columns), minmax(0, 1fr)); */
+  background: green;
+}
+.bugb2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  /* row-gap: var(--row-gutter); */
+  /* background: red; */
+}
+blockquote,
+figure,
+q {
+  margin: 0;
+}
+figure {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 40px;
+  margin-inline-end: 40px;
+  unicode-bidi: isolate;
+}
+element.style {
+    aspect-ratio: 3600 / 2396;
+}
+.I7OuT {
+    position: relative;
+}
+.DVW3V {
+    height: 100%;
+}
+img {
+    vertical-align: middle;
+}
+img {
+    border-style: none;
+}
+:where(.L1BOa) {
+    width: 100%;
+}
+* {
+    box-sizing: border-box;
+}
+user agent stylesheet
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.zNNw1 {
+    cursor: zoom-in;
+}
+.AxdkY, a {
+    color: var(--link-text-color);
+    text-decoration-skip-ink: auto;
+    transition: color .1s ease-in-out, opacity .1s ease-in-out;
+} 
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+style attribute {
+    --row-gutter: 24px;
+}
+style attribute {
+    --column-gutter: 24px;
+    --columns: 3;
+}
+.cm8F8 {
+    color: var(--text-color);
+    fill: var(--text-color);
+    background-color: var(--background-color);
+    -webkit-font-smoothing: var(--font-smoothing);
+}
+.UyVIg {
+    --font-smoothing: auto;
+    --background-color: #fff;
+    --button-primary-background-color: #111;
+    --button-primary-background-color-hover: #222;
+    --button-primary-gradient-background-color: hsla(0, 0%, 100%, .1);
+    --button-primary-text-color: #fff;
+    --faded-text-color: #d1d1d1;
+    --form-input-radio-button-border-color: #d1d1d1;
+    --form-input-radio-button-checked-border-color: #007fff;
+    --form-input-radio-button-checked-dot-color: #007fff;
+    --link-text-color-hover: #111;
+    --link-text-color: #767676;
+    --placeholder-background-color: rgba(0, 0, 0, .05);
+    --small-faded-text-color: #767676;
+    --text-color: #111;
+    --demos-alt-background: #eee;
+    --demos-sidebar-active-entry-link: green;
+}
+body {
+    font-family: -apple-system, BlinkMacSystemFont, San Francisco, Helvetica Neue, Helvetica, Ubuntu, Roboto, Noto, Segoe UI, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+@media (min-width: 768px) {
+    :root {
+        --grid-container-inline-padding: 20px;
+    }
+}
+:root {
+    --space-1: 4px;
+    --space-2: 12px;
+    --space-3: 36px;
+    --space-4: 72px;
+}
+:root {
+    --space-1: .5rem;
+    --space-2: 1rem;
+    --space-3: 2rem;
+    --space-4: 4rem;
+}
+:root {
+    --width-1: 24rem;
+    --width-2: 32rem;
+    --width-3: 48rem;
+    --width-4: 64rem;
+}
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
