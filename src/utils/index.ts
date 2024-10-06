@@ -7,4 +7,4 @@ export const createQueryParam = (obj: { [id: string]: any }): string => {
     .join('&')
 
   return query
-}
+} 
