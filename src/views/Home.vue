@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
-// import PhotoCard from '@/components/PhotoCard.vue';
-import { getPosts } from '@/infrastructure/api';
+import { searchPhotos } from '@/infrastructures/api';
+import type { Photo, PhotoData, SearchQueryParams } from '@/types'
 
-const photos = ref<any[]>([]);
+const photos = ref<Photo[]>([]);
 const isLoading = ref<boolean>(true);
 
+const queryParams = ref<SearchQueryParams>({
+  query: 'African',
+})
 
-const fetchPosts = async () => {
+const fetchPhotos = async () => {
   try {
-    const response = await getPosts();
-    console.log('response::', response.data.results)
-    photos.value = response.data.results;
-  } catch (error) {
-    console.error('Error fetching photos:', error);
+    const response: PhotoData = await searchPhotos(queryParams.value);
+    if (!response) return
+    photos.value = response.results
   } finally {
     isLoading.value = false;
   }
@@ -21,13 +22,16 @@ const fetchPosts = async () => {
 
 // Fetch photos on component mount
 onMounted(() => {
-  fetchPosts();
+  fetchPhotos();
 });
 </script>
 
 <template>
-  <div>
-    <h1>Photos</h1>
+  <div class="home-page">
+    <!-- header -->
+    <header> Photos </header>
+    <div class="header-bg"></div>
+
     <div v-if="isLoading">
       <div class="loading-grid">
         <div v-for="n in 12" :key="n" class="loading-card">
@@ -44,7 +48,7 @@ onMounted(() => {
       <div class="image-grid">
         <div v-for="photo in photos" :key="photo.id">
           <div class="image-card">
-            <img :src="photo.urls.regular" :alt="photo.alt_description" class="image-card__image" />
+            <img :src="photo.urls.regular" :alt="photo.description" class="image-card__image" />
 
 
 
@@ -58,44 +62,28 @@ onMounted(() => {
           </div>
         </div>
       </div>
-
-      <!-- <div class="grid-container">
-        <div v-for="photo in photos" :key="photo.id">
-          <div class="image-card">
-            <img :src="photo.urls.regular" :alt="photo.alt_description" class="image-card__image" />
-
-            <div class="image-card__content">
-              <h2 class="image-card__title">{{ photo.description || 'No description available' }}</h2>
-              <p class="image-card__description">{{ photo.alt_description }}</p>
-            </div>
-
-            <div class="image-card__author">
-              <img :src="photo.user.profile_image.small" alt="Author profile image" class="author__image" />
-              <div class="author__details">
-                <p class="author__name">{{ photo.user.name }}</p>
-                <p class="author__location">{{ photo.user.location }}</p>
-              </div>
-            </div>
-
-            <div class="image-card__footer">
-              <span class="likes">Likes: {{ photo.likes }}</span>
-              <a :href="photo.links.html" target="_blank" class="view-link">View on Unsplash</a>
-            </div>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </template>
 
 <style scoped>
+.header-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: #DDE3EA;
+}
+
 .image-grid {
   column-count: 2;
   column-gap: 16px;
 }
 
 .image-card {
-  position: relative; display: inline-block;
+  position: relative;
+  display: inline-block;
   /* Ensures the cards remain inline and are wrapped in columns */
   background: white;
   border-radius: 8px;

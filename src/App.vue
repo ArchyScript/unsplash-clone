@@ -2,8 +2,13 @@
 import { RouterView } from 'vue-router' 
 </script>
 
-<template>
-  <RouterView />
+<template> 
+    <RouterView /> 
 </template>
 
-<style scoped></style>
+<style scoped> 
+div {
+  background: red;
+  height: 100%;
+}
+</style>
