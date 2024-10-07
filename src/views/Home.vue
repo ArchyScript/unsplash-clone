@@ -107,7 +107,7 @@ $photo-grid-padding: 0 4rem;
 
     @media (max-width: 768px) {
       column-count: 1;
-      padding: 0 1.2rem;
+      padding: 0 0.5rem;
     }
 
 

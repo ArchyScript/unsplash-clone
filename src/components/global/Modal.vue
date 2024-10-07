@@ -27,9 +27,9 @@ const closeModal = () => {
     <transition name="fade">
         <div v-if="isModalOpen" class="modal-overlay" @click="closeModal">
             <div class="modal-content" @click.stop>
-                <div class="close-icon" @click="closeModal">
+                <!-- <div class="close-icon" @click="closeModal">
                     <CloseIcon />
-                </div>
+                </div> -->
 
                 <div class="modal-body">
                     <slot />
