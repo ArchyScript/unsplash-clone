@@ -12,63 +12,80 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-import type { Photo } from '@/types'
+import { defineProps, defineEmits } from 'vue';
+import type { Photo } from '@/types';
 
 const props = defineProps({
     photo: {
         type: Object as () => Photo,
         required: true,
     },
-})
-const emit = defineEmits(['selected'])
-const handleSelect = () => emit('selected', props.photo) 
+});
+
+const emit = defineEmits(['selected']);
+const handleSelect = () => emit('selected', props.photo);
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$image-border-radius: 10px;
+$image-margin-bottom: 16px;
+$card-padding: 2rem;
+$card-background-color: rgba(0, 0, 0, 0.3);
+$card-hover-background-color: rgba(0, 0, 0, 0.5);
+$font-size-author: 1rem;
+$font-size-location: 14px;
+$font-weight-bold: 600;
+$font-weight-normal: 400;
+
 .image-card {
     position: relative;
     display: inline-block;
-    border-radius: 10px;
-    margin-bottom: 16px;
+    border-radius: $image-border-radius;
+    margin-bottom: $image-margin-bottom;
     width: 100%;
     height: 100%;
     overflow: hidden;
-}
+    cursor: pointer;
+    margin-bottom: 16px;
 
-.image-card__image {
-    width: 100%;
-    border-radius: 10px;
-    height: 100%;
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        border-radius: $image-border-radius;
+        object-fit: cover;
+    }
 }
 
 .card-container {
     position: absolute;
     left: 0;
     bottom: 0;
-    padding: 2rem;
-    margin: 0;
-    color: white;
+    padding: $card-padding;
     display: flex;
-    align-items: end;
-    height: 100%;
+    align-items: flex-end;
     width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    cursor: pointer;
+    height: 100%;
+    background: $card-background-color;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background: $card-hover-background-color;
+    }
 }
 
-.card-container:hover {
-    background: rgba(0, 0, 0, 0.5);
-}
+.author__details {
+    color: white;
 
-.author__name {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
+    .author__name {
+        font-size: $font-size-author;
+        font-weight: $font-weight-bold;
+        margin-bottom: 2px;
+    }
 
-.author__location {
-    font-size: 14px;
-    font-weight: normal;
+    .author__location {
+        font-size: $font-size-location;
+        font-weight: $font-weight-normal;
+    }
 }
 </style>

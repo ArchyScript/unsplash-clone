@@ -31,7 +31,6 @@ const closeModal = () => {
                     <CloseIcon />
                 </div>
 
-                <!--  -->
                 <div class="modal-body">
                     <slot />
                 </div>
@@ -40,23 +39,40 @@ const closeModal = () => {
     </transition>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+$modal-background: rgba(137, 137, 137, 0.5);
+$close-icon-background: rgba(255, 255, 255, 0.3);
+$close-icon-hover-background: rgba(255, 255, 255, 0.5);
+
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #89898950;
+    background: $modal-background;
     display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
     overflow: auto;
+    transition: background-color 0.3s ease;
 }
 
 .modal-content {
     border-radius: 12px;
     margin: auto;
     position: relative;
+
+    @media (max-width: 481px) {
+        border-radius: 6px;
+        width: 95%;
+    }
+
+    @media (min-width: 481px) and (max-width: 768px) {
+        border-radius: 8px;
+        width: 90%;
+    }
 }
 
 .close-icon {
@@ -71,24 +87,22 @@ const closeModal = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-.close-icon:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+
+    &:hover {
+        background-color: $close-icon-hover-background;
+    }
 }
 
 .modal-body {
     max-height: calc(100vh - 8rem);
     overflow-y: auto;
     padding: 20px;
-}
-
-.modal-body::-webkit-scrollbar {
-    display: none;
-}
-
-.modal-body {
     scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .fade-enter-active,

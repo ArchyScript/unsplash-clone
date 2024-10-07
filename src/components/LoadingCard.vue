@@ -22,89 +22,105 @@ defineProps({
 }) 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$primary-color: #f6f6f6;
+$shimmer-color: #e0e0e0;
+$border-radius: 8px;
+$transition-time: 0.3s;
+
+// Grid Layout
 .loading-grid {
-    column-count: 3;
+    display: grid;
     gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    @media (max-width: 480px) {
+        gap: 8px;
+    }
+
+    @media (min-width: 481px) and (max-width: 1024px) {
+        gap: 12px;
+    }
+
+    @media (min-width: 1025px) {
+        gap: 16px;
+    }
 }
 
 .loading-card {
-    background-color: #f6f6f6;
-    border-radius: 8px;
+    background-color: $primary-color;
+    border-radius: $border-radius;
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: background-color $transition-time ease-in-out;
     margin-bottom: 16px;
+
+    &:hover {
+        background-color: $primary-color;
+    }
 }
 
-.loading-image {
-    background-color: #e0e0e0;
-    border-radius: 8px 8px 0 0;
-    width: 100%;
+// Shimmer Effect
+.loading-image,
+.loading-line {
     background: linear-gradient(to right,
-            #e0e0e0 0%,
-            #f6f6f6 50%,
-            #e0e0e0 100%);
+            $shimmer-color 0%,
+            $primary-color 50%,
+            $shimmer-color 100%);
     background-size: 200% 100%;
-    animation: loading-shimmer 1.5s infinite linear;
+    animation: shimmer 1.5s infinite linear;
+    transition: background-position $transition-time;
+
+    border-radius: 8px;
+
+    // Height Variations
+    &.height-1 {
+        height: 220px;
+    }
+
+    &.height-2 {
+        height: 260px;
+    }
+
+    &.height-3 {
+        height: 300px;
+    }
+
+    &.height-4 {
+        height: 320px;
+    }
+
+    &.height-5 {
+        height: 360px;
+    }
+
+    &.height-6 {
+        height: 400px;
+    }
 }
 
-.height-1 {
-    height: 220px;
-}
-
-.height-2 {
-    height: 260px;
-}
-
-.height-3 {
-    height: 300px;
-}
-
-.height-4 {
-    height: 320px;
-}
-
-.height-5 {
-    height: 360px;
-}
-
-.height-6 {
-    height: 400px;
-}
-
+// Loading content
 .loading-content {
     padding: 16px;
-    background: linear-gradient(to left,
-            #e0e0e0 0%,
-            #f6f6f6 50%,
-            #e0e0e0 100%);
-    background-size: 200% 100%;
-    animation: loading-shimmer 1.5s infinite linear;
 }
 
 .loading-line {
     height: 20px;
-    background: linear-gradient(to left,
-            #e0e0e0 0%,
-            #f6f6f6 50%,
-            #e0e0e0 100%);
-    background-size: 200% 100%;
-    animation: loading-shimmer 1.5s infinite linear;
+    margin-bottom: 10px;
     border-radius: 4px;
 
+    &.name {
+        width: 75%;
+    }
+
+    &.desc {
+        width: 50%;
+    }
 }
 
-.loading-line.name {
-    width: 75%;
-    margin-bottom: 10px;
-}
-
-.loading-line.desc {
-    width: 50%;
-}
-
-@keyframes loading-shimmer {
+// Keyframes for shimmer effect
+@keyframes shimmer {
     0% {
         background-position: -200% 0;
     }

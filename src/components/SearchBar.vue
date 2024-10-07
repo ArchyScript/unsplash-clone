@@ -9,7 +9,6 @@ const onSearch = () => {
   if (!searchQuery.value) return
   emit('search', searchQuery.value)
 }
-
 </script>
 
 <template>
@@ -21,21 +20,34 @@ const onSearch = () => {
   </form>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+$search-background: #ffffff;
+$search-placeholder-color: #a0aec0;
+$search-input-color: #2d3748;
+$search-padding: 1.2rem 1rem;
+$search-border-radius: 0.75rem;
+$search-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+$search-shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.1);
+$input-padding: 0.4rem;
+
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #ffffff;
-  padding: 1.2rem 1rem;
-  border-radius: 0.75rem;
+  background-color: $search-background;
+  padding: $search-padding;
+  border-radius: $search-border-radius;
   width: 100%;
   transition: all 0.3s ease;
   gap: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+  box-shadow: $search-shadow;
 
-.search-bar:hover {
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+
+  &:hover {
+    box-shadow: $search-shadow-hover;
+  }
 }
 
 .search-icon {
@@ -49,17 +61,22 @@ input {
   border: none;
   outline: none;
   flex-grow: 1;
-  font-size: 14px;
-  color: #2d3748;
+  font-size: 1rem;
+  color: $search-input-color;
   background-color: transparent;
-  padding: 0.4rem;
-}
+  padding: $input-padding;
 
-input::placeholder {
-  color: #a0aec0;
-}
 
-input:focus::placeholder {
-  color: transparent;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  &::placeholder {
+    color: $search-placeholder-color;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
 }
 </style>

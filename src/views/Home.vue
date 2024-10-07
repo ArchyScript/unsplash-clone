@@ -9,9 +9,7 @@ import NoResultsFound from '@/components/NoResultsFound.vue'
 
 import type { Photo, PhotoData, SearchQueryParams } from '@/types'
 
-const queryParams = ref<SearchQueryParams>({
-  query: 'african',
-})
+const queryParams = ref<SearchQueryParams>({ query: 'african' })
 const photos = ref<Photo[]>([]);
 const showSearchBar = ref(false)
 const isSearching = ref(false)
@@ -22,6 +20,7 @@ const openModal = (photo: Photo) => {
   selectedPhoto.value = photo
   isModalVisible.value = true
 }
+
 const handleSearch = async (query: string) => {
   queryParams.value.query = query
   await fetchPhotos()
@@ -38,6 +37,7 @@ const fetchPhotos = async () => {
     isSearching.value = false;
   }
 };
+
 const handleBack = () => showSearchBar.value = true
 
 onMounted(() => fetchPhotos()); 
@@ -66,7 +66,6 @@ onMounted(() => fetchPhotos());
     <Modal v-model="isModalVisible">
       <div class="modal-content">
         <img :src="selectedPhoto?.urls?.regular" :alt="selectedPhoto?.description" />
-
         <div class="author__details">
           <p class="author__name">{{ selectedPhoto?.user.name }}</p>
           <p class="author__location">{{ selectedPhoto?.user.location }}</p>
@@ -76,110 +75,95 @@ onMounted(() => fetchPhotos());
   </div>
 </template>
 
-<style scoped>
-header {
-  padding: 2.5rem 1rem;
-}
-
-.header-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: #DDE3EA;
-  z-index: -1;
-}
-
-.photo-grid {
-  column-count: 3;
-  column-gap: 16px;
-  padding: 0 4rem;
-}
+<style scoped lang="scss">
+$primary-color: #DDE3EA;
+$header-padding: 2.5rem 1rem;
+$photo-grid-padding: 0 4rem;
 
 
-@media (max-width: 1024px) {
+.home-page {
+  header {
+    padding: $header-padding;
+
+    @media (max-width: 481px) {
+      padding: 2.5rem 0;
+    }
+  }
+
+  .header-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: $primary-color;
+    z-index: -1;
+  }
+
   .photo-grid {
-    column-count: 2;
-  }
-}
-
-@media (max-width: 768px) {
-  .photo-grid {
-    column-count: 1;
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .photo-grid {
-    column-count: 1;
-    column-gap: 8px;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  .photo-grid {
-    column-count: 2;
-    column-gap: 12px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .photo-grid {
-    column-count: 2;
+    column-count: 3;
     column-gap: 16px;
+    padding: $photo-grid-padding;
+
+    @media (max-width: 768px) {
+      column-count: 1;
+      padding: 0 1.2rem;
+    }
+
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      column-count: 2;
+      padding: 0 2rem;
+    }
   }
-}
 
-@media (min-width: 1025px) and (max-width: 1440px) {
-  .photo-grid {
-    column-count: 3;
-    column-gap: 20px;
+  .modal-content {
+    background-color: #fff;
+    height: auto;
+    border-radius: 1rem;
+
+    >img {
+      border-radius: 1rem 1rem 0 0;
+      width: 100%;
+
+      @media (max-width: 768px) {
+        border-radius: 0.6rem 0.6rem 0 0;
+      }
+    }
   }
-}
 
-@media (min-width: 1441px) {
-  .photo-grid {
-    column-count: 3;
-    column-gap: 24px;
+  .author__details {
+    padding: 1.5rem 3rem;
+
+    @media (max-width: 480px) {
+      padding: 0.8rem 1rem;
+    }
+
+    @media (min-width: 481px) and (max-width: 768px) {
+      padding: 1rem 1.5rem;
+    }
+
+    .author__name {
+      color: #2B3B5E;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: capitalize;
+      margin-bottom: 1px;
+
+      @media (max-width: 480px) {
+        font-size: 1rem;
+      }
+
+      @media (min-width: 481px) and (max-width: 1024px) {
+        font-size: 1.2rem;
+      }
+    }
+
+    .author__location {
+      font-size: 14px;
+      font-weight: 500;
+      color: #4b586d;
+    }
   }
-}
-
-.modal-content {
-  background-color: #fff;
-  height: auto;
-  border-radius: 1rem;
-}
-
-.modal-content>img {
-  border-radius: 1rem 1rem 0 0;
-}
-
-.author__details {
-  padding: 1.5rem 3rem;
-}
-
-.author__name {
-  color: #2B3B5E;
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-transform: capitalize;
-  margin-bottom: 1px;
-}
-
-.author__location {
-  font-size: 14px;
-  font-weight: 500;
-  color: #4b586d;
 }
 </style>
