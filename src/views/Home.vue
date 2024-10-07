@@ -6,12 +6,11 @@ import LoadingCard from '@/components/LoadingCard.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import SearchResultTitle from '@/components/SearchResultTitle.vue'
 import NoResultsFound from '@/components/NoResultsFound.vue'
-import Modal from '@/components/Modal.vue'
 
 import type { Photo, PhotoData, SearchQueryParams } from '@/types'
 
 const queryParams = ref<SearchQueryParams>({
-  query: 'wewsdfrr',
+  query: 'african',
 })
 const photos = ref<Photo[]>([]);
 const showSearchBar = ref(false)
@@ -41,13 +40,12 @@ const fetchPhotos = async () => {
 };
 const handleBack = () => showSearchBar.value = true
 
-onMounted(() =>    fetchPhotos() );
+onMounted(() => fetchPhotos()); 
 </script>
 
 <template>
   <div class="home-page">
     <div class="header-bg"></div>
-    <!-- header -->
     <header>
       <SearchBar v-if="showSearchBar" @search="handleSearch" />
       <SearchResultTitle v-else :title="queryParams.query" :isSearching @back="handleBack" />
@@ -66,8 +64,14 @@ onMounted(() =>    fetchPhotos() );
     </div>
 
     <Modal v-model="isModalVisible">
-      <!-- Passing custom content into the modal via slot -->
-      <img :src="selectedPhoto?.urls?.regular" alt="Selected image" class="modal-image" />
+      <div class="modal-content">
+        <img :src="selectedPhoto?.urls?.regular" :alt="selectedPhoto?.description" />
+
+        <div class="author__details">
+          <p class="author__name">{{ selectedPhoto?.user.name }}</p>
+          <p class="author__location">{{ selectedPhoto?.user.location }}</p>
+        </div>
+      </div>
     </Modal>
   </div>
 </template>
@@ -106,14 +110,6 @@ header {
   }
 }
 
-/* LOADING  */
-
-.loading-grid {
-  column-count: 3;
-  gap: 16px;
-}
-
-/* Shimmer animation */
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -157,5 +153,33 @@ header {
     column-count: 3;
     column-gap: 24px;
   }
+}
+
+.modal-content {
+  background-color: #fff;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.modal-content>img {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.author__details {
+  padding: 1.5rem 3rem;
+}
+
+.author__name {
+  color: #2B3B5E;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-bottom: 1px;
+}
+
+.author__location {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b586d;
 }
 </style>

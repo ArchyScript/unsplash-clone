@@ -1,14 +1,15 @@
 import './assets/main.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { Icon } from '@/components/global'
 
 import App from './App.vue'
 import router from './router'
 
-const app = createApp(App)
+import Modal from '@/components/global/Modal.vue'
 
-app.component('Icon', Icon)
+const app = createApp(App)
+ 
+app.component('Modal', Modal)
 
 app.use(createPinia())
 app.use(router)

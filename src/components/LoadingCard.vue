@@ -2,9 +2,10 @@
     <div class="loading-grid">
         <div v-for="n in 12" :key="n" class="loading-card">
             <div :class="['loading-image', `height-${n % 6 + 1}`]"></div>
+
             <div class="loading-content">
-                <div class="loading-line w-3/4 mb-2"></div>
-                <div class="loading-line w-1/2"></div>
+                <div class="loading-line name w-3/4  "></div>
+                <div class="loading-line desc w-1/2"></div>
             </div>
         </div>
     </div>
@@ -24,11 +25,11 @@ defineProps({
 <style scoped>
 .loading-grid {
     column-count: 3;
-    gap: 16px; 
+    gap: 16px;
 }
 
 .loading-card {
-    background-color: #f0f0f0;
+    background-color: #f6f6f6;
     border-radius: 8px;
     overflow: hidden;
     display: flex;
@@ -36,20 +37,18 @@ defineProps({
     margin-bottom: 16px;
 }
 
-/* Image placeholders with variable heights */
 .loading-image {
     background-color: #e0e0e0;
-    animation: shimmer 1.5s infinite;
-    background-image: linear-gradient(to right,
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+    background: linear-gradient(to right,
             #e0e0e0 0%,
-            #f2f2f2 50%,
+            #f6f6f6 50%,
             #e0e0e0 100%);
     background-size: 200% 100%;
-    border-radius: 8px;
-    width: 100%;
+    animation: loading-shimmer 1.5s infinite linear;
 }
 
-/* Two different sizes for staggered effect */
 .height-1 {
     height: 220px;
 }
@@ -76,28 +75,42 @@ defineProps({
 
 .loading-content {
     padding: 16px;
-}
-
-/* Simulate text lines with different widths */
-.loading-line {
-    height: 20px;
-    background-color: #e0e0e0;
-    animation: shimmer 1.5s infinite;
-    background-image: linear-gradient(to right,
+    background: linear-gradient(to left,
             #e0e0e0 0%,
-            #f2f2f2 50%,
+            #f6f6f6 50%,
             #e0e0e0 100%);
     background-size: 200% 100%;
-    border-radius: 4px;
+    animation: loading-shimmer 1.5s infinite linear;
 }
 
-/* Different widths for the text lines */
-.line-large {
+.loading-line {
+    height: 20px;
+    background: linear-gradient(to left,
+            #e0e0e0 0%,
+            #f6f6f6 50%,
+            #e0e0e0 100%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite linear;
+    border-radius: 4px;
+
+}
+
+.loading-line.name {
     width: 75%;
     margin-bottom: 10px;
 }
 
-.line-medium {
+.loading-line.desc {
     width: 50%;
+}
+
+@keyframes loading-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 </style>

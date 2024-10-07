@@ -29,17 +29,11 @@ const handleSelect = () => emit('selected', props.photo)
 .image-card {
     position: relative;
     display: inline-block;
-    background: white;
     border-radius: 10px;
     margin-bottom: 16px;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    /*
-box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77);
-    -webkit-box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77);
-    -moz-box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77); 
-    */
 }
 
 .image-card__image {
@@ -50,9 +44,8 @@ box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77);
 
 .card-container {
     position: absolute;
-    bottom: 0;
     left: 0;
-    right: 0;
+    bottom: 0;
     padding: 2rem;
     margin: 0;
     color: white;
@@ -60,17 +53,22 @@ box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77);
     align-items: end;
     height: 100%;
     width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
 
+.card-container:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .author__name {
     font-size: 1rem;
-    font-weight: semibold;
+    font-weight: 600;
     margin-bottom: 2px;
 }
 
 .author__location {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
 }
 </style>
