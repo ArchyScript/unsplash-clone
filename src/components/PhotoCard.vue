@@ -2,7 +2,7 @@
     <div class="image-card" @click="handleSelect">
         <img :src="photo.urls.regular" :alt="photo.description" class="image-card__image" />
 
-        <div class="image-card__author">
+        <div class="card-container">
             <div class="author__details">
                 <p class="author__name">{{ photo.user.name }}</p>
                 <p class="author__location">{{ photo.user.location }}</p>
@@ -30,26 +30,31 @@ const handleSelect = () => emit('selected', props.photo)
     position: relative;
     display: inline-block;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
     margin-bottom: 16px;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    /*
+box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77);
+    -webkit-box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77);
+    -moz-box-shadow: -3px 0px 36px 6px rgba(210, 216, 229, 0.77); 
+    */
 }
 
 .image-card__image {
     width: 100%;
-    height: auto;
+    border-radius: 10px;
+    height: 100%;
 }
 
-.image-card__author {
+.card-container {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 2rem;
-    background: rgba(0, 0, 0, 0.6);
+    margin: 0;
     color: white;
     display: flex;
     align-items: end;

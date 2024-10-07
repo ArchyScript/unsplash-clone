@@ -24,11 +24,7 @@ defineProps({
 <style scoped>
 .loading-grid {
     column-count: 3;
-    gap: 16px;
-    z-index: 999; 
-    top: 0;
-    left: 0;
-    width: 100%;
+    gap: 16px; 
 }
 
 .loading-card {
